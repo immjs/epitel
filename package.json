@@ -1,0 +1,44 @@
+{
+  "name": "epitel",
+  "version": "1.0.0",
+  "description": "EPITA Minitel monolithic infrastructure",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx tsc && node .",
+    "dev": "npx tsc && NODE_ENV=development node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/immjs/epitel.git"
+  },
+  "author": "Juliette WANG <immjs>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/immjs/epitel/issues"
+  },
+  "homepage": "https://github.com/immjs/epitel#readme",
+  "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
+    "dotenv": "^16.4.7",
+    "duplexer3": "^1.0.0",
+    "fetch-cookie": "^3.1.0",
+    "gssapi.js": "^2.0.1",
+    "make-dir": "^5.0.0",
+    "minitel-mosaic": "^3.5.3",
+    "minitel-react": "^6.0.0",
+    "node-html-parser": "^7.0.1",
+    "react-router": "^7.3.0",
+    "typescript": "^5.8.2",
+    "ws": "^8.18.1",
+    "ws-duplex-bridge": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/duplexer3": "^0.1.4",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/ws": "^8.18.0",
+    "react-devtools-core": "^6.1.1"
+  }
+}

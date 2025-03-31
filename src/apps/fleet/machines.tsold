@@ -1,0 +1,43 @@
+// @ts-nocheck
+
+interface Campus {
+  name: string;
+  fullname: string;
+  rooms: Room[];
+}
+
+interface Room {
+  name: string;
+  fullname: string;
+}
+
+export const campuses: Campus[] = [
+  {
+    name: 'KB',
+    fullname: 'kb',
+    rooms: ['CISC', 'LABS', 'MIDL', 'SM14', 'SM15'],
+  },
+  {
+    name: 'VJ',
+    fullname: 'vj',
+    rooms: ['V302', 'V303', 'V304', 'V305', 'V306', 'V311'],
+  },
+  {
+    name: 'LYN',
+    fullname: 'lyn-viv',
+    rooms: ['L201', 'L202', 'L203', 'L4', 'L503', 'L504'],
+  },
+  {
+    name: 'TLS',
+    rooms: ['TC60', 'TC61', 'TC62'],
+  },
+  {
+    name: 'STG',
+    fullname: 'stg-hir',
+    rooms: ['S101', 'S102', 'S403'],
+  },
+  {
+    name: 'RNS',
+    rooms: ['RV10', 'RV11'],
+  },
+];
