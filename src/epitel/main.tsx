@@ -1,9 +1,17 @@
 import { Route, Routes, useLocation, useNavigate } from "react-router";
 import { apps } from "./apps.js";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useKeyboard } from "minitel-react";
+import { mainContext } from "../index.js";
 
 export function EpitelMain() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useKeyboard((v) => {
+    if (v === '\x13\x45' && location.pathname !== '/') navigate('/');
+  });
+
   return (
     <mt-yjoin>
       <mt-cont flexGrow>
@@ -30,6 +38,12 @@ function AppMenu() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  const mainCtx = useContext(mainContext);
+
+  useKeyboard((v) => {
+    if (v === '\x13\x45') mainCtx.auth[1](null);
+  });
+
   useKeyboard((key) => {
     if (key === "\x13\x41") {
       if (errorMsg) {
@@ -48,6 +62,7 @@ function AppMenu() {
           <mt-para doubleHeight>
             Welcome to Epitel
           </mt-para>
+          <mt-para fg={4}>ANNULATION to log out</mt-para>
         </mt-xjoin>
         <mt-xjoin widthAlign="middle">
           {
