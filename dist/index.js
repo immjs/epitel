@@ -8,11 +8,12 @@ import { createContext } from "react";
 import { App } from "./app.js";
 import { DuplexBridge } from "ws-duplex-bridge";
 export const mainContext = createContext({});
-function init(stream, name) {
+async function init(stream, name) {
     const minitel = new Minitel(stream, {
         statusBar: true,
         defaultCase: 'lower',
     });
+    await minitel.readyAsync();
     render((_jsx(App, { remoteAddress: name })), minitel);
 }
 // server.listen(process.env.PORT, () => console.log(`Up and running on ${process.env.PORT}`));
@@ -34,6 +35,8 @@ if (process.env.NODE_ENV !== 'local') {
     wss.on('connection', (ws, req) => {
         const connection = new DuplexBridge(ws, { decodeStrings: false });
         const remoteAddress = req.socket.remoteAddress;
+        // Keepalive
+        setInterval(() => connection.write('\x00'), 10000);
         init(connection, remoteAddress);
     });
     console.log('Is in dev; port', +process.env.PORT, 'is up!');

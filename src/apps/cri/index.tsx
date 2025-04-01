@@ -35,6 +35,7 @@ function CriApp() {
           </mt-span>
         </mt-para>
         <mt-yjoin widthAlign="stretch" invert gap={1} pad={2}>
+          <mt-para>Login of the person to look up</mt-para>
           <mt-input autofocus onChange={setLookingUp} />
           <mt-para><mt-span invert>ENVOI</mt-span> to look up</mt-para>
         </mt-yjoin>

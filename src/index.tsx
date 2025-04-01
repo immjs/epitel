@@ -43,7 +43,7 @@ type MainContextType = MainContextAuthed | MainContextUnauthed;
 
 export const mainContext = createContext({} as MainContextType);
 
-function init(stream: Duplex, name: string) {
+async function init(stream: Duplex, name: string) {
   const minitel = new Minitel(
     stream,
     {
@@ -51,6 +51,8 @@ function init(stream: Duplex, name: string) {
       defaultCase: 'lower',
     },
   );
+
+  await minitel.readyAsync();
 
   render((
     <App remoteAddress={name} />
@@ -77,6 +79,9 @@ if (process.env.NODE_ENV !== 'local') {
     const connection = new DuplexBridge(ws, { decodeStrings: false });
 
     const remoteAddress = req.socket.remoteAddress;
+
+    // Keepalive
+    setInterval(() => connection.write('\x00'), 10_000);
 
     init(connection, remoteAddress!);
   });

@@ -17,5 +17,5 @@ function CriApp() {
             navigate(`/cri/lookup/${lookingUp}`, { replace: true });
         }
     }, [lookingUp]);
-    return (_jsx("mt-yjoin", { widthAlign: "middle", heightAlign: "middle", children: _jsxs("mt-yjoin", { widthAlign: "stretch", textAlign: "middle", children: [_jsx("mt-para", { bg: 3, fg: 0, pad: 2, children: _jsx("mt-span", { doubleHeight: true, doubleWidth: true, children: "CRI lookup" }) }), _jsxs("mt-yjoin", { widthAlign: "stretch", invert: true, gap: 1, pad: 2, children: [_jsx("mt-input", { autofocus: true, onChange: setLookingUp }), _jsxs("mt-para", { children: [_jsx("mt-span", { invert: true, children: "ENVOI" }), " to look up"] })] })] }) }));
+    return (_jsx("mt-yjoin", { widthAlign: "middle", heightAlign: "middle", children: _jsxs("mt-yjoin", { widthAlign: "stretch", textAlign: "middle", children: [_jsx("mt-para", { bg: 3, fg: 0, pad: 2, children: _jsx("mt-span", { doubleHeight: true, doubleWidth: true, children: "CRI lookup" }) }), _jsxs("mt-yjoin", { widthAlign: "stretch", invert: true, gap: 1, pad: 2, children: [_jsx("mt-para", { children: "Login of the person to look up" }), _jsx("mt-input", { autofocus: true, onChange: setLookingUp }), _jsxs("mt-para", { children: [_jsx("mt-span", { invert: true, children: "ENVOI" }), " to look up"] })] })] }) }));
 }
