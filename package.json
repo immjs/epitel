@@ -30,6 +30,7 @@
     "minitel-react": "^6.0.0",
     "node-html-parser": "^7.0.1",
     "react-router": "^7.3.0",
+    "serialport": "^13.0.0",
     "typescript": "^5.8.2",
     "ws": "^8.18.1",
     "ws-duplex-bridge": "^1.0.1"

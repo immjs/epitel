@@ -1,6 +1,7 @@
 import { WebSocketServer } from "ws";
 import { Minitel, render } from "minitel-react";
 import { stat } from "node:fs";
+import { SerialPort } from "serialport";
 
 import "dotenv/config";
 
@@ -57,18 +58,10 @@ function init(stream: Duplex, name: string) {
 }
 
 // server.listen(process.env.PORT, () => console.log(`Up and running on ${process.env.PORT}`));
-for (let terminal of [
-  "/dev/pts/1",
-  "/dev/pts/2",
-  "/dev/pts/3",
-  "/dev/pts/4",
-  "/dev/pts/5",
-  "/dev/pts/6",
-]) {
+for (let terminal of process.env.PATHS!.split(',')) {
   if (await new Promise((r) => stat(terminal, (e) => r(e))) == null) {
-    const WS = createWriteStream(terminal);
-    const RS = createReadStream(terminal);
-    const duplex = duplexer3(WS, RS);
+    const serial = new SerialPort({ path: terminal, baudRate: +process.env.BAUDRATE!, parity: 'even', dataBits: 7 });
+    const duplex = serial;
     duplex.write("hello");
     duplex.on('data', (v) => console.log(v));
     init(duplex, terminal);
@@ -78,7 +71,7 @@ for (let terminal of [
   }
 }
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'local') {
   const wss = new WebSocketServer({ port: +process.env.PORT! });
   wss.on('connection', (ws, req) => {
     const connection = new DuplexBridge(ws, { decodeStrings: false });
