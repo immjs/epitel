@@ -52,7 +52,7 @@ async function init(stream: Duplex, name: string) {
     },
   );
 
-  await minitel.readyAsync();
+  // await minitel.readyAsync();
 
   render((
     <App remoteAddress={name} />
