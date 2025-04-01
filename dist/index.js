@@ -13,7 +13,7 @@ async function init(stream, name) {
         statusBar: true,
         defaultCase: 'lower',
     });
-    await minitel.readyAsync();
+    // await minitel.readyAsync();
     render((_jsx(App, { remoteAddress: name })), minitel);
 }
 // server.listen(process.env.PORT, () => console.log(`Up and running on ${process.env.PORT}`));
